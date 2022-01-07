@@ -3,14 +3,15 @@ import React, { Fragment } from 'react';
 import Header from './components/Header';
 import Container from './components/Container';
 import AddForm from './components/AddForm';
-import Posts from './components/Post/Posts';
+import Books from './components/Book/Books';
+
 const App = () => {
   return (
     <Fragment>
       <Header />
       <Container>
         <AddForm />
-        <Posts />
+        <Books />
       </Container>
     </Fragment>
   );

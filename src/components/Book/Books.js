@@ -1,22 +1,22 @@
 import React, { Fragment } from 'react';
-import Postinfo from './PostInfo';
-import Postlist from './PostList';
-import './post.css';
+import BookInfo from './BookInfo';
+import BooksList from './BooksList';
+import './book.css';
 
-const Posts = () => {
+const Books = () => {
   return (
     <Fragment>
-      <hr className='mt-2 mb-3' />
+      <hr className='my-5' />
       <div className='row'>
         <div className='col'>
-          <Postlist />
+          <BooksList />
         </div>
         <div className='col side-line'>
-          <Postinfo />
+          <BookInfo />
         </div>
       </div>
     </Fragment>
   );
 };
 
-export default Posts;
+export default Books;

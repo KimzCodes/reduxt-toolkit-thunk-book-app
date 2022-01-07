@@ -27,7 +27,6 @@ const Addform = () => {
           </button>
         </form>
       </div>
-      <hr className='mt-2 mb-3' />
     </div>
   );
 };
