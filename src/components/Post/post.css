@@ -1,0 +1,8 @@
+.side-line::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background: ;
+}
