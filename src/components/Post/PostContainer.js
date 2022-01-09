@@ -8,7 +8,7 @@ import './post.css';
 const PostContainer = () => {
   const dispatch = useDispatch();
 
-  const { loading, posts } = useSelector((state) => state.posts);
+  const { loading, posts, error } = useSelector((state) => state.posts);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -19,7 +19,7 @@ const PostContainer = () => {
       <hr className='my-5' />
       <div className='row'>
         <div className='col'>
-          <PostList loading={loading} posts={posts} />
+          <PostList loading={loading} posts={posts} error={error} />
         </div>
         <div className='col side-line'>
           <PostInfo />
