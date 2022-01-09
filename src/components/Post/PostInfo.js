@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-const Postinfo = () => {
+const PostInfo = () => {
   return (
     <Fragment>
-      <h2>Book Details</h2>
+      <h2>Post Details</h2>
       <div class='alert alert-secondary' role='alert'>
         There is no post selected yet. Please select!
       </div>
@@ -16,4 +16,4 @@ const Postinfo = () => {
   );
 };
 
-export default Postinfo;
+export default PostInfo;
