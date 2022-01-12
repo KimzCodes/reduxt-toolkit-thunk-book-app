@@ -38,7 +38,7 @@ const BooksList = ({ loading, books, dispatch, getBook, isloggedIn }) => {
             </div>
           </li>
         ))
-      : 'no posts returned';
+      : 'no books found';
   return (
     <div>
       <h2>Books List</h2>
