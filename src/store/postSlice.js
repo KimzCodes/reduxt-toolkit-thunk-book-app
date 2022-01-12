@@ -2,22 +2,25 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchPosts = createAsyncThunk(
   'post/fetchPosts',
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch('http://localhost:3009/posts');
+      const res = await fetch('http://localhost:3001/posts');
       const data = await res.json();
       return data;
     } catch (error) {
-      return rejectWithValue('customize error');
+      return rejectWithValue(error.message);
     }
   }
 );
 
 export const insertPost = createAsyncThunk(
   'post/insertPost',
-  async (postData, { rejectWithValue }) => {
+  async (postData, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
     try {
-      const res = await fetch('http://localhost:3009/posts', {
+      const res = await fetch('http://localhost:3001/posts', {
         method: 'POST',
         body: JSON.stringify(postData),
         headers: {
@@ -27,7 +30,7 @@ export const insertPost = createAsyncThunk(
       const data = await res.json();
       return data;
     } catch (error) {
-      return rejectWithValue('customize error');
+      return rejectWithValue(error.message);
     }
   }
 );

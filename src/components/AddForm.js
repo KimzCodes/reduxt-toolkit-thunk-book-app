@@ -17,7 +17,9 @@ const Addform = () => {
         price: priceRef.current.value,
         description: descRef.current.value,
       })
-    );
+    ).then((res) => {
+      console.log(res);
+    });
     titleRef.current.value = null;
     priceRef.current.value = null;
     descRef.current.value = null;
