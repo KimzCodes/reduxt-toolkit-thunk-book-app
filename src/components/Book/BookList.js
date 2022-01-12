@@ -3,7 +3,7 @@ import React from 'react';
 const BooksList = () => {
   return (
     <div>
-      <h2>Book List</h2>
+      <h2>Books List</h2>
       <ul className='list-group'>
         <li className='list-group-item d-flex  justify-content-between align-items-center'>
           <div>Cras justo odio</div>
