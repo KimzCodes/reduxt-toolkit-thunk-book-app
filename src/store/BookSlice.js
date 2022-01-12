@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchPosts = createAsyncThunk(
-  'post/fetchPosts',
+export const fetchBooks = createAsyncThunk(
+  'book/fetchBooks',
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await fetch('http://localhost:3001/posts');
+      const res = await fetch('http://localhost:3001/books');
       const data = await res.json();
       return data;
     } catch (error) {
@@ -14,15 +14,16 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
-export const insertPost = createAsyncThunk(
-  'post/insertPost',
-  async (postData, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+export const insertBook = createAsyncThunk(
+  'book/insertBook',
+  async (bookData, thunkAPI) => {
+    const { rejectWithValue, getState } = thunkAPI;
+    bookData.auther = getState().auth.name;
 
     try {
-      const res = await fetch('http://localhost:3001/posts', {
+      const res = await fetch('http://localhost:3001/books', {
         method: 'POST',
-        body: JSON.stringify(postData),
+        body: JSON.stringify(bookData),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -35,12 +36,12 @@ export const insertPost = createAsyncThunk(
   }
 );
 
-export const deletePost = createAsyncThunk(
-  'post/deletePost',
+export const deleteBook = createAsyncThunk(
+  'book/deleteBook',
   async (data, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await fetch(`http://localhost:3001/posts/${data.id}`, {
+      await fetch(`http://localhost:3001/books/${data.id}`, {
         method: 'DELETE',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
@@ -54,53 +55,53 @@ export const deletePost = createAsyncThunk(
   }
 );
 
-const postSlice = createSlice({
-  name: 'post',
-  initialState: { posts: [], loading: false, error: null },
+const BookSlice = createSlice({
+  name: 'book',
+  initialState: { books: [], loading: false, error: null },
   reducers: {},
   extraReducers: {
     //fetch
-    [fetchPosts.pending]: (state, action) => {
+    [fetchBooks.pending]: (state, action) => {
       state.loading = true;
       state.error = null;
     },
-    [fetchPosts.fulfilled]: (state, action) => {
-      state.posts = action.payload;
+    [fetchBooks.fulfilled]: (state, action) => {
+      state.books = action.payload;
       state.loading = false;
     },
-    [fetchPosts.rejected]: (state, action) => {
+    [fetchBooks.rejected]: (state, action) => {
       state.error = action.payload;
       state.loading = false;
     },
 
     //insert
-    [insertPost.pending]: (state, action) => {
+    [insertBook.pending]: (state, action) => {
       state.loading = true;
       state.error = null;
     },
-    [insertPost.fulfilled]: (state, action) => {
-      state.posts.push(action.payload);
+    [insertBook.fulfilled]: (state, action) => {
+      state.books.push(action.payload);
       state.loading = false;
     },
-    [insertPost.rejected]: (state, action) => {
+    [insertBook.rejected]: (state, action) => {
       state.error = action.payload;
       state.loading = false;
     },
 
     //delete
-    [deletePost.pending]: (state, action) => {
+    [deleteBook.pending]: (state, action) => {
       state.loading = true;
       state.error = null;
     },
-    [deletePost.fulfilled]: (state, action) => {
-      state.posts = state.posts.filter((post) => post.id !== action.payload.id);
+    [deleteBook.fulfilled]: (state, action) => {
+      state.books = state.books.filter((el) => el.id !== action.payload.id);
       state.loading = false;
     },
-    [deletePost.rejected]: (state, action) => {
+    [deleteBook.rejected]: (state, action) => {
       state.error = action.payload;
       state.loading = false;
     },
   },
 });
 
-export default postSlice.reducer;
+export default BookSlice.reducer;

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import posts from './postSlice';
+import books from './BookSlice';
+import auth from './authSlice';
 
-export default configureStore({ reducer: { posts } });
+export default configureStore({ reducer: { books, auth } });
