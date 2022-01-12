@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import PostInfo from './PostInfo';
-import PostList from './PostList';
-import './post.css';
+import BookInfo from './BookInfo';
+import BookList from './BookList';
+
+import './book.css';
 
 const PostContainer = () => {
   return (
@@ -9,10 +10,10 @@ const PostContainer = () => {
       <hr className='my-5' />
       <div className='row'>
         <div className='col'>
-          <PostList />
+          <BookList />
         </div>
         <div className='col side-line'>
-          <PostInfo />
+          <BookInfo />
         </div>
       </div>
     </Fragment>

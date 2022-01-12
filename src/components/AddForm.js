@@ -4,6 +4,7 @@ const Addform = () => {
   return (
     <div className='row'>
       <div className='col-6 offset-3 mt-3'>
+        <h2>Insert Book</h2>
         <form>
           <div className='form-group'>
             <label htmlFor='title'>Title</label>
