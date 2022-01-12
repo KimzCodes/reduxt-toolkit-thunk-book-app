@@ -19,7 +19,12 @@ const PostContainer = () => {
       <hr className='my-5' />
       <div className='row'>
         <div className='col'>
-          <PostList loading={loading} posts={posts} error={error} />
+          <PostList
+            loading={loading}
+            posts={posts}
+            error={error}
+            dispatch={dispatch}
+          />
         </div>
         <div className='col side-line'>
           <PostInfo />
