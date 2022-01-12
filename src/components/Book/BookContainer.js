@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import BookInfo from './BookInfo';
-import BookList from './BookList';
+import BooksList from './BooksList';
 
 import './book.css';
 
@@ -10,7 +10,7 @@ const PostContainer = () => {
       <hr className='my-5' />
       <div className='row'>
         <div className='col'>
-          <BookList />
+          <BooksList />
         </div>
         <div className='col side-line'>
           <BookInfo />
