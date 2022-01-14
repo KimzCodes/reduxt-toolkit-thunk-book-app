@@ -3,28 +3,67 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const getBooks = createAsyncThunk(
   'book/getBooks',
   async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
     try {
       const res = await fetch('http://localhost:3005/books');
       const data = await res.json();
       return data;
     } catch (error) {
-      console.log(error);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const insertBook = createAsyncThunk(
+  'book/insertBook',
+  async (bookData, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await fetch('http://localhost:3005/books', {
+        method: 'POST',
+        body: JSON.stringify(bookData),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
 
 const bookSlice = createSlice({
   name: 'book',
-  initialState: { books: null },
+  initialState: { books: [], isLoading: false, error: null },
   extraReducers: {
+    //get books
     [getBooks.pending]: (state, action) => {
-      console.log(action);
+      state.isLoading = true;
+      state.error = null;
     },
     [getBooks.fulfilled]: (state, action) => {
-      console.log(action);
+      state.isLoading = false;
+      state.books = action.payload;
     },
     [getBooks.rejected]: (state, action) => {
-      console.log(action);
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+
+    //insert book
+    [insertBook.pending]: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [insertBook.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.books.push(action.payload);
+    },
+    [insertBook.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
