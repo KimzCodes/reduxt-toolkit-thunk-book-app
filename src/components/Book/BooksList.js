@@ -1,6 +1,13 @@
 import React from 'react';
 
-const BooksList = ({ isLoading, books, isLoggedIn }) => {
+const BooksList = ({
+  isLoading,
+  books,
+  isLoggedIn,
+  dispatch,
+  deleteBook,
+  getFullData,
+}) => {
   const bookList =
     books.length > 0
       ? books.map((item) => (
@@ -10,13 +17,27 @@ const BooksList = ({ isLoading, books, isLoggedIn }) => {
           >
             <div>{item.title}</div>
             <div className='btn-group' role='group'>
-              <button type='button' className='btn btn-primary'>
+              <button
+                type='button'
+                className='btn btn-primary'
+                onClick={() => getFullData(item)}
+              >
                 Read
               </button>
               <button
                 type='button'
                 className='btn btn-danger'
                 disabled={!isLoggedIn}
+                onClick={() =>
+                  dispatch(deleteBook(item))
+                    .unwrap()
+                    .then((originalPromiseResult) => {
+                      console.log(originalPromiseResult);
+                    })
+                    .catch((rejectedValueOrSerializedError) => {
+                      console.log(rejectedValueOrSerializedError);
+                    })
+                }
               >
                 Delete
               </button>
