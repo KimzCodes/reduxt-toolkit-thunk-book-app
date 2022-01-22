@@ -7,16 +7,9 @@ import BooksList from './BooksList';
 import './book.css';
 
 const PostContainer = () => {
-  const [bookInfo, setBookInfo] = useState({});
   const { isLoading, books } = useSelector((state) => state.books);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
-  const getFullData = (item) => {
-    if (item) {
-      setBookInfo((prev) => ({ ...prev, item }));
-    }
-  };
 
   useEffect(() => {
     dispatch(getBooks());
@@ -33,11 +26,10 @@ const PostContainer = () => {
             isLoggedIn={isLoggedIn}
             deleteBook={deleteBook}
             dispatch={dispatch}
-            getFullData={getFullData}
           />
         </div>
         <div className='col side-line'>
-          <BookInfo bookInfo={bookInfo} />
+          <BookInfo />
         </div>
       </div>
     </Fragment>

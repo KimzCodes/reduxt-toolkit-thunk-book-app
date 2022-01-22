@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
-const BookInfo = ({ bookInfo }) => {
-  console.log(bookInfo);
+const BookInfo = () => {
   return (
     <Fragment>
       <h2>Book Details</h2>
