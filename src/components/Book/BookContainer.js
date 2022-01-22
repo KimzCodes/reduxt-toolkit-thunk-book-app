@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooks, deleteBook } from '../../store/bookSlice';
 import BookInfo from './BookInfo';
