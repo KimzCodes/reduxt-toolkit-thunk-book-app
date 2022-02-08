@@ -26,6 +26,13 @@ const BooksList = ({
               </button>
               <button
                 type='button'
+                className='btn btn-success'
+                onClick={() => getBookId(item.id)}
+              >
+                Udate
+              </button>
+              <button
+                type='button'
                 className='btn btn-danger'
                 disabled={!isLoggedIn}
                 onClick={() =>

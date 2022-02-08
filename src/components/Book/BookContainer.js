@@ -16,7 +16,6 @@ const PostContainer = () => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  console.log('red render');
   const getBookId = (id) => {
     const selectedBook = books.find((item) => item.id === id);
     setSelectedBook((prev) => {

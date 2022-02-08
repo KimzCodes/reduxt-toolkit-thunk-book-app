@@ -19,6 +19,7 @@ const Addform = () => {
       description: description.current.value,
     };
     dispatch(insertBook(data));
+
     title.current.value = null;
     price.current.value = null;
     description.current.value = null;
