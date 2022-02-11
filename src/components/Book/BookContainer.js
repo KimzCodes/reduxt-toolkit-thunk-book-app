@@ -28,9 +28,7 @@ const PostContainer = () => {
           return { ...prev, ...selectedBook };
         });
         break;
-      case 'edit':
-        dispatch(selectedBookAction(item));
-        break;
+
       case 'delete':
         dispatch(deleteBook(item))
           .unwrap()
