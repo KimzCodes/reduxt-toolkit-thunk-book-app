@@ -22,7 +22,7 @@ export const insertBook = createAsyncThunk(
     try {
       bookData.userName = getState().auth.name;
       //disptch
-      dispatch(deleteBook({ id: 5 }));
+      // dispatch(deleteBook({ id: 5 }));
       const res = await fetch('http://localhost:3005/books', {
         method: 'POST',
         body: JSON.stringify(bookData),
