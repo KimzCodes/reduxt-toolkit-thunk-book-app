@@ -16,11 +16,29 @@ const PostContainer = () => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  const getBookId = (id) => {
-    const selectedBook = books.find((item) => item.id === id);
-    setSelectedBook((prev) => {
-      return { ...prev, ...selectedBook };
-    });
+  const getBook = (item, type) => {
+    switch (type) {
+      case 'read':
+        const selectedBook = books.find((el) => el.id === item.id);
+        setSelectedBook((prev) => {
+          return { ...prev, ...selectedBook };
+        });
+        break;
+
+      case 'delete':
+        dispatch(deleteBook(item))
+          .unwrap()
+          .then((originalPromiseResult) => {
+            console.log(originalPromiseResult);
+          })
+          .catch((rejectedValueOrSerializedError) => {
+            console.log(rejectedValueOrSerializedError);
+          });
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (
@@ -32,9 +50,7 @@ const PostContainer = () => {
             isLoading={isLoading}
             books={books}
             isLoggedIn={isLoggedIn}
-            deleteBook={deleteBook}
-            dispatch={dispatch}
-            getBookId={getBookId}
+            getBook={getBook}
           />
         </div>
         <div className='col side-line'>
