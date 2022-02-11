@@ -62,7 +62,12 @@ export const deleteBook = createAsyncThunk(
 
 const bookSlice = createSlice({
   name: 'book',
-  initialState: { books: [], isLoading: false, error: null },
+  initialState: { books: [], isLoading: false, error: null, book: null },
+  reducers: {
+    selectedBook: (state, action) => {
+      state.book = action.payload;
+    },
+  },
   extraReducers: {
     //get books
     [getBooks.pending]: (state, action) => {
@@ -107,5 +112,5 @@ const bookSlice = createSlice({
     },
   },
 });
-
+export const { selectedBook } = bookSlice.actions;
 export default bookSlice.reducer;

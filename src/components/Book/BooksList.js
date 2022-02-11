@@ -19,6 +19,14 @@ const BooksList = ({ isLoading, books, isLoggedIn, getBook }) => {
               </button>
               <button
                 type='button'
+                className='btn btn-success'
+                onClick={() => getBook(item, 'edit')}
+                disabled={!isLoggedIn}
+              >
+                Edit
+              </button>
+              <button
+                type='button'
                 className='btn btn-danger'
                 disabled={!isLoggedIn}
                 onClick={() => getBook(item, 'delete')}

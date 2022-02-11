@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBooks, deleteBook } from '../../store/bookSlice';
+import {
+  getBooks,
+  deleteBook,
+  selectedBook as selectedBookAction,
+} from '../../store/bookSlice';
 import BookInfo from './BookInfo';
 import BooksList from './BooksList';
 
@@ -24,7 +28,9 @@ const PostContainer = () => {
           return { ...prev, ...selectedBook };
         });
         break;
-
+      case 'edit':
+        dispatch(selectedBookAction(item));
+        break;
       case 'delete':
         dispatch(deleteBook(item))
           .unwrap()
